@@ -27,7 +27,7 @@ public class First {
 		 * Define the bean inside that.
 		 * 
 		 */
-	    Resource resource=new ClassPathResource("applicationContext.xml");  
+	    Resource resource=new ClassPathResource("first.xml");  
 	    BeanFactory factory=new XmlBeanFactory(resource);  
 	    Student s1=(Student)factory.getBean("studentbean");  
 	    s1.displayInfo();  
@@ -38,8 +38,8 @@ public class First {
 		 * So try catch it or don't get it into a variable
 		 * ApplicationContext would be automatically closed when the application exits
 		 */
-	    ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
-        Student s2= (Student) context.getBean("studentbean");
+	    ApplicationContext context= new ClassPathXmlApplicationContext("first.xml");
+        Student s2= (Student) context.getBean("studentbean");								
         s2.displayInfo();
         
         
