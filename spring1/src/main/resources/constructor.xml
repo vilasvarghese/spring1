@@ -9,4 +9,11 @@
 		<constructor-arg value="1" type="int"></constructor-arg>
 	</bean>
 
+<!-- 
+<bean id="toyota" class="com.baeldung.constructordi.domain.Car">
+    <constructor-arg index="0" ref="engine"/>
+    <constructor-arg index="1" ref="transmission"/>
+</bean>
+ref: would represent the variable/method
+ -->
 </beans>  
