@@ -346,7 +346,7 @@ https://github.com/vilasvarghese/microservices/blob/master/training/SpringNotes.
 				
 			The singleton scope
 			-------------------
-Exercise 2 : reference to Exercise 1					
+Exercise 2 : reference to Exercise 1			
 	spring1/com.vilas.ch1.scope.singleton			
 				When a bean is a singleton
 					only one shared instance of the bean will be managed
@@ -498,6 +498,7 @@ Exercise 3 : reference to Exercise 1
 		
 	o @Autowired 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		A similar reference : https://www.youtube.com/watch?v=HFt_q0wYYLU
 		D:\PraiseTheLord\HSBGInfotech\Spring\SpringBootNotes.txt
 	@Autowired
 		Done with reference to @Configuration
@@ -544,6 +545,7 @@ Exercise 3 : reference to Exercise 1
 
 	o Component scan 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		https://www.youtube.com/watch?v=L1Y5pwy09Vw
 		Done with reference @Autowired
 		- Remove all code in Config and add @ComponentScan
 		- Add @Component for Employee
@@ -577,7 +579,7 @@ Exercise 3 : reference to Exercise 1
 			Best practices
 			--------------
 				Try to put @Configuration class in the 
-					most specific package without package
+					most specific package if used without package
 					or 
 						packages that you specify can be most specific.
 
@@ -656,6 +658,7 @@ Exercise 3 : reference to Exercise 1
 	o @Qualifier
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		https://www.baeldung.com/spring-qualifier-annotation
+		D:\PraiseTheLord\HSBGInfotech\Others\vilas\microservices1\qualifier\MyQualifier.java
 		By default, Spring resolves autowired entries by type.
 		If more than one bean of the same type is available in the container, 
 			the framework will throw NoUniqueBeanDefinitionException
@@ -720,27 +723,37 @@ Exercise 3 : reference to Exercise 1
 						
 		
 
-The job of the DispatcherServlet is to take an incoming URI and find the right combination of handlers (generally methods on Controller classes) and views (generally JSPs) that combine to form the page or resource that's supposed to be found at that location.
+			Why DispatcherServlet 
+			---------------------
+				take incoming URI 
+				find the right combination of handlers 
+					(generally methods on Controller classes) 
+					and views (generally JSPs) 
 
-I might have
+	e.g.
+			a file /WEB-INF/jsp/pages/Home.jsp
+			
+			and a method on Controller class
+			@RequestMapping(value="/pages/Home.html")
+			private ModelMap buildHome() {
+				return somestuff;
+			}
 
-a file /WEB-INF/jsp/pages/Home.jsp
-and a method on a class
+			The Dispatcher servlet 
+				"knows" 
+					to call the method when a browser requests the page, and 
+					to combine its results with the matching JSP file to make an html document.
 
-@RequestMapping(value="/pages/Home.html")
-private ModelMap buildHome() {
-    return somestuff;
-}
+			How it accomplishes 
+				varies widely with configuration and Spring version.
 
+			N.B: end result need not be web pages. 
+			It can do the same thing to locate 
+				RMI end points
+				handle SOAP requests
+				anything that can come into a servlet.
 
-
-The Dispatcher servlet is the bit that "knows" to call that method when a browser requests the page, and to combine its results with the matching JSP file to make an html document.
-
-How it accomplishes this varies widely with configuration and Spring version.
-
-There's also no reason the end result has to be web pages. It can do the same thing to locate RMI end points, handle SOAP requests, anything that can come into a servlet.
-
-https://stackoverflow.com/questions/2769467/what-is-dispatcher-servlet-in-spring
+			https://stackoverflow.com/questions/2769467/what-is-dispatcher-servlet-in-spring
 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	o @SpringBootApplication 
@@ -769,6 +782,12 @@ https://stackoverflow.com/questions/2769467/what-is-dispatcher-servlet-in-spring
 
 			To find out what auto-configuration is currently being applied, and why
 				start your application with the --debug switch. 
+				Debugging
+					java -Xdebug -jar target/myproject-0.0.1-SNAPSHOT.jar
+					mvnDebug spring-boot:run
+				Remote debugging
+					java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n -jar target/myproject-0.0.1-SNAPSHOT.jar
+					
 				This will log an auto-configuration report to the console.
 
 		Disabling specific auto-configuration
@@ -809,10 +828,17 @@ https://stackoverflow.com/questions/2769467/what-is-dispatcher-servlet-in-spring
 					datasource 
 					and an Entity Manager.
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	o Application runner 
-		interface 
-		used to execute the code after the Spring Boot application started. 
-		D:/code1/commandline/src/main/java/com/vilas/commandline
+	o Spring cli
+		https://docs.spring.io/spring-boot/docs/current/reference/html/cli.html
+		D:\code1\spring-boot-cli-2.4.5-bin\spring-2.4.5\bin
+		spring 
+		spring run hello.groovy
+		spring run hello.groovy application.properties
+	
+		Application runner 
+			interface 
+			used to execute the code after the Spring Boot application started. 
+			D:/code1/commandline/src/main/java/com/vilas/commandline
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	o @RestController 
 		-------------

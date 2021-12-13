@@ -33,6 +33,8 @@ public class Client {
 		// Now compare the references to see
 		// whether they are pointing to the
 		// same object or different object
+		System.out.println(mys);
+		System.out.println(mys1);
 		System.out.println(mys== mys1);
 	}
 }
