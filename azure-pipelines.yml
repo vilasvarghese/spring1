@@ -22,7 +22,7 @@ pool:
 #  webAppName: 'java-spring-boot'
 
 stages:
-  webAppName: 'java-spring-boot'
+#  webAppName: 'java-spring-boot'
 - stage: Build
   displayName: Build stage
   jobs:
